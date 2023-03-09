@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in example • Pico.css</title>
+    <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS.">
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+    <link rel="canonical" href="https://picocss.com/examples/sign-in/">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="pico-master/css/pico.min.css">
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="Index.html" class="contrast"><img src="DamageControlLogo.png" style="width:8%" /><strong>Damage
+                        Control</strong></a></li>
+        </ul>
+        <ul>
+            <!-- <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Theme</summary>
+                    <ul role="listbox">
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                    </ul>
+                </details>
+            </li>-->
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Pages</summary>
+                    <ul role="listbox">
+                        <li><a href="NewLogin.html">Log In</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="../classless/">Class-less</a></li>
+                        <li><a href="../basic-template/">Basic template</a></li>
+                        <li><a href="../company/">Company</a></li>
+                        <li><a href="../google-amp/">Google Amp</a></li>
+                        <li><a href="../sign-in/">Sign in</a></li>
+                        <li><a href="../bootstrap-grid/">Bootstrap grid</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </nav><!-- ./ Nav -->
+
+    <!-- Main -->
+    <main class="container">
+        <article class="grid">
+            <div>
+
+                <h1 style="margin: 0;">Register</h1>
+                <!-- <h2>A minimalist layout for Login pages</h2>-->
+
+                <form style="margin-top: 0;">
+                    <input type="text" name="username" placeholder="Username" aria-label="Username"
+                        autocomplete="nickname" required>
+                    <input type="password" name="password" placeholder="Password" aria-label="Password"
+                        autocomplete="current-password" required>
+                    <input type="text" name="First Name" placeholder="First Name" required
+                        style="width: 49%; margin-right: 1px;">
+                    <input type="text" name="Last Name" placeholder="Last Name" required
+                        style="width: 49%; margin-left: 0;">
+                    <input type="text" name="Email" placeholder="Email" aria-label="Email" autocomplete="nickname"
+                        required>
+                    <input type="tel" name="PhoneNumber" placeholder="xxx-xxx-xxxx" aria-label="Phone Number" required>
+                    <fieldset>
+
+                    </fieldset>
+                    <button type="submit" class="contrast" onclick="event.preventDefault()">Register</button>
+                </form>
+            </div>
+            <div style="margin-top: 15%;"><img src="DamageControlLogo.png" /></div>
+        </article>
+    </main><!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container-fluid" style="width:100%;">
+        <small>Built with <a href="https://picocss.com" class="secondary">Pico</a> • <a
+                href="https://github.com/picocss/examples/tree/master/sign-in/" class="secondary">Source
+                code</a></small>
+        <div style="display: block; text-align: center; font-size: small;">
+            <a href="NewLogin.html">Log In</a>
+            <a href="Register.html">Register</a>
+            <a href="NewLogin.html">About Us</a>
+        </div>
+
+    </footer><!-- ./ Footer -->
+
+    <!-- Minimal theme switcher -->
+    <script src="minimal-theme-switcher.js"></script>
+    <script src="custom.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in example • Pico.css</title>
+    <meta name="description" content="A minimalist layout for Login pages. Built with Pico CSS.">
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+    <link rel="canonical" href="https://picocss.com/examples/sign-in/">
+
+    <!-- Pico.css -->
+    <link href="@Url.Content("~/css/Site.css")" rel="stylesheet" type="text/css" />
+
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="Index" class="contrast"><img src="@Url.Content("~/lib/img/DamageControlLogo.png")"
+                        style="width:8%" /><strong>Damage
+                        Control</strong></a></li>
+        </ul>
+        <ul>
+            <!-- <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Theme</summary>
+                    <ul role="listbox">
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                    </ul>
+                </details>
+            </li>-->
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Pages</summary>
+                    <ul role="listbox">
+                        <li><a href="NewLogin.html">Log In</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="../classless/">Class-less</a></li>
+                        <li><a href="../basic-template/">Basic template</a></li>
+                        <li><a href="../company/">Company</a></li>
+                        <li><a href="../google-amp/">Google Amp</a></li>
+                        <li><a href="../sign-in/">Sign in</a></li>
+                        <li><a href="../bootstrap-grid/">Bootstrap grid</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </nav><!-- ./ Nav -->
+
+    <!-- Main -->
+    <main class="container">
+        <article class="grid">
+            <div>
+
+                <h1 style="margin: 0;">Claim Submission</h1>
+
+
+                <form style="margin-top: 0;">
+                    <input type="text" name="Amount" placeholder="Damage Amount" aria-label="Damage Amount" required>
+                    <script src="@Url.Content("~/js/searchForDamager.js")"></script>
+                    <input onkeyup="retrieveDamagers()" id="Damager" type="search" name="Damager Name"
+                        placeholder="Damager Name" aria-label="Damager Name" required>
+                    <input type="date" name="Date of Damage" aria-label="Date of Damage" required>
+                    <input type="paragraph" name="Description" aria-label="Description" required>
+                    <fieldset>
+
+                    </fieldset>
+                    <button type="submit" class="contrast" onclick="event.preventDefault()">Submit Claim</button>
+                </form>
+            </div>
+        </article>
+    </main><!-- ./ Main -->
+
+    <!-- Footer -->
+    <footer class="container-fluid" style="width:100%;">
+        <small>Built with <a href="https://picocss.com" class="secondary">Pico</a> • <a
+                href="https://github.com/picocss/examples/tree/master/sign-in/" class="secondary">Source
+                code</a></small>
+        <div style="display: block; text-align: center; font-size: small;">
+            <a href="NewLogin">Log In</a>
+            <a href="Register.html">Register</a>
+            <a href="NewLogin.html">About Us</a>
+        </div>
+
+    </footer><!-- ./ Footer -->
+
+    <!-- Minimal theme switcher -->
+    <script src="@Url.Content("~/js/minimal-theme-switcher.js")"></script>
+    <script src="@Url.Content("~/js/custom.js")"></script>
+
+</body>
+
+</html>
