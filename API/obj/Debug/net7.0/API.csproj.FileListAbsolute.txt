@@ -30,3 +30,37 @@ C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\API.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\ref\API.dll
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.csproj.AssemblyReference.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.AssemblyInfoInputs.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.AssemblyInfo.cs
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.csproj.CoreCompileInputs.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.RazorAssemblyInfo.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.RazorAssemblyInfo.cs
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.dll
+C:\Revature\project2teamA\API\obj\Debug\net7.0\refint\API.dll
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.pdb
+C:\Revature\project2teamA\API\bin\Debug\net7.0\appsettings.Development.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\appsettings.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\Views\pico-master\composer.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\Views\pico-master\package-lock.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\Views\pico-master\package.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\Services\obj\project.assets.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\Services\obj\services.csproj.nuget.dgspec.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.staticwebassets.runtime.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.exe
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.deps.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.runtimeconfig.json
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.dll
+C:\Revature\project2teamA\API\bin\Debug\net7.0\API.pdb
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets\msbuild.build.API.props
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.API.props
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.API.props
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets.build.json
+C:\Revature\project2teamA\API\obj\Debug\net7.0\staticwebassets.development.json
+C:\Revature\project2teamA\API\obj\Debug\net7.0\scopedcss\bundle\API.styles.css
+C:\Revature\project2teamA\API\obj\Debug\net7.0\API.genruntimeconfig.cache
+C:\Revature\project2teamA\API\obj\Debug\net7.0\ref\API.dll
