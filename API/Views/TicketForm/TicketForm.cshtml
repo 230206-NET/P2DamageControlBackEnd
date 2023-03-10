@@ -63,11 +63,12 @@
                 <h1 style="margin: 0;">Claim Submission</h1>
 
 
-                <form style="margin-top: 0;">
+                <form style="margin-top: 0;" autocomplete="on">
                     <input type="text" name="Amount" placeholder="Damage Amount" aria-label="Damage Amount" required>
                     <script src="@Url.Content("~/js/searchForDamager.js")"></script>
-                    <input onkeyup="retrieveDamagers()" id="Damager" type="search" name="Damager Name"
-                        placeholder="Damager Name" aria-label="Damager Name" required>
+                    <datalist id="possibleheroes"></datalist>
+                    <input onkeyup="retrieveDamagers()" id="Damager" type="search" name="Damager Name" autocomplete="on"
+                        placeholder="Damager Name" aria-label="Damager Name" list="possibleheroes" required />
                     <input type="date" name="Date of Damage" aria-label="Date of Damage" required>
                     <input type="paragraph" name="Description" aria-label="Description" required>
                     <fieldset>
