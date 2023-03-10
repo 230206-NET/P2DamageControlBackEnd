@@ -35,6 +35,34 @@ public class DBRepository : IRepository
         return allTickets;
     }
 
+    public User? GetUserByUsername(string Username)
+    {
+
+
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE Username = @Username", conn);
+        cmd.Parameters.AddWithValue("@Username", username);
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+
+        while (reader.Read())
+        {
+            User? user = new User(
+                (int)reader["User_ID"],
+                (string)reader["Username"],
+                (string)reader["Hashed_Password"],
+                (string)reader["Full_Name"],
+                (string)reader["Email"],
+                (int)reader["Access_Level"]
+
+            );
+            return user;
+        }
+        return null;
+    }
+
     /// <summary>
     /// Persists a new ticket to storage
     /// </summary>
@@ -54,7 +82,7 @@ public class DBRepository : IRepository
 
     //     cmd.ExecuteNonQuery();
     // }
-        public void CreateNewTicket(Ticket newTicket)
+    public void CreateNewTicket(Ticket newTicket)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
@@ -67,6 +95,21 @@ public class DBRepository : IRepository
         cmd.Parameters.AddWithValue("@DamageDate", newTicket.DamageDate);
         cmd.Parameters.AddWithValue("@Description", newTicket.Description);
         cmd.Parameters.AddWithValue("@DamagerId", newTicket.DamagerId);
+
+        cmd.ExecuteNonQuery();
+    }
+
+    public void CreateNewUser(User newUser)
+    {
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("INSERT into Users(Username, Hashed_Password, Full_Name, Email, AccessLevel) Values (@Username, @Hashed_Password, @Full_Name, @Email, @AccessLevel)", conn);
+        cmd.Parameters.AddWithValue("@Username", newUser.Username);
+        cmd.Parameters.AddWithValue("@Hashed_Password", newUser.Password);
+        cmd.Parameters.AddWithValue("@Full_Name", newUser.FullName);
+        cmd.Parameters.AddWithValue("@Email", newUser.Email);
+        cmd.Parameters.AddWithValue("@AccessLevel", newUser.AccessLevel);
 
         cmd.ExecuteNonQuery();
     }
