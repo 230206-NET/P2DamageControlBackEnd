@@ -30,5 +30,3 @@ C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\API.pdb
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\API.genruntimeconfig.cache
 C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\obj\Debug\net7.0\ref\API.dll
-C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\bin\Debug\net7.0\package-lock.json
-C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\bin\Debug\net7.0\package.json
