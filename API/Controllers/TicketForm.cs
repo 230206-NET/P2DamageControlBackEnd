@@ -25,7 +25,7 @@ public class TicketFormController : Controller
         return View();
     }
     [HttpPost]
-    public User? LogIn(string username, string password)
+    public Ticket? SubmitClaim(double Amount, string damager, DateTime dateOfDamage, string description)
     {
         //return services.RepositoryName(username, password);
         return null;
