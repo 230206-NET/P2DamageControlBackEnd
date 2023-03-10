@@ -19,5 +19,5 @@ function pushTicket(event) {
     }).then((res) => {console.log(res); res.json()}).then(data => console.log(data)).catch(error => console.error(error))
     setTimeout(function() {
         window.location.href = "http://localhost:5025/ViewAllTickets";
-      }, 2000);
+      }, 3000);
 }
