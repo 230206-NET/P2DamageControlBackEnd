@@ -6,9 +6,8 @@ function pushTicket(event) {
     console.log(Damager)
     const reqBody = {
         Amount: amount,
-        Damager: damager,
-        Description: description,
-        DateOfDamage: new Date().toISOString()
+        DamagerId: damager,
+        Description: description
     }
     fetch("http://localhost:5025/TicketForm/SubmitClaim", {
         method: "POST",
