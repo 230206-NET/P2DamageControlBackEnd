@@ -9,29 +9,29 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = API
 build_property.RootNamespace = API
-build_property.ProjectDir = C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API\
+build_property.ProjectDir = C:\Users\eperr\OneDrive\Documents\Revature Projects\Project 2\P2DamageControlBackEnd\API\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\eperr\Documents\Revature Notes\projects\Project2\P2DamageControlBackEnd\API
+build_property.MSBuildProjectDirectory = C:\Users\eperr\OneDrive\Documents\Revature Projects\Project 2\P2DamageControlBackEnd\API
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/eperr/Documents/Revature Notes/projects/Project2/P2DamageControlBackEnd/API/Views/Index/Index.cshtml]
+[C:/Users/eperr/OneDrive/Documents/Revature Projects/Project 2/P2DamageControlBackEnd/API/Views/Index/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kZXhcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/eperr/Documents/Revature Notes/projects/Project2/P2DamageControlBackEnd/API/Views/NewLogin/NewLogin.cshtml]
+[C:/Users/eperr/OneDrive/Documents/Revature Projects/Project 2/P2DamageControlBackEnd/API/Views/NewLogin/NewLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3TG9naW5cTmV3TG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/eperr/Documents/Revature Notes/projects/Project2/P2DamageControlBackEnd/API/Views/Register/Register.cshtml]
+[C:/Users/eperr/OneDrive/Documents/Revature Projects/Project 2/P2DamageControlBackEnd/API/Views/Register/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/eperr/Documents/Revature Notes/projects/Project2/P2DamageControlBackEnd/API/Views/TicketForm/TicketForm.cshtml]
+[C:/Users/eperr/OneDrive/Documents/Revature Projects/Project 2/P2DamageControlBackEnd/API/Views/TicketForm/TicketForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0Rm9ybVxUaWNrZXRGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/eperr/Documents/Revature Notes/projects/Project2/P2DamageControlBackEnd/API/Views/ViewAllTickets/ViewAllTickets.cshtml]
+[C:/Users/eperr/OneDrive/Documents/Revature Projects/Project 2/P2DamageControlBackEnd/API/Views/ViewAllTickets/ViewAllTickets.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld0FsbFRpY2tldHNcVmlld0FsbFRpY2tldHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

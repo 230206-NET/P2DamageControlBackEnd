@@ -27,12 +27,12 @@ public class RegisterController : Controller
     {
         return View();
     }
-    [HttpPost]
-    public User? LogIn([FromBody] JsonElement newUser)
+   // [HttpPost]
+    /*public User? LogIn([FromBody] JsonElement newUser)
     {
         User? LogIn = JsonSerializer.Deserialize<User?>(newUser.GetRawText());
         return DBRepository.CreateNewUser(LogIn);
-    }
+    }*/
 }
 
 

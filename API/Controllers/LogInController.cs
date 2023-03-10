@@ -27,12 +27,12 @@ public class NewLogInController : Controller
     {
         return View();
     }
-    [HttpPost]
+   /* [HttpPost]
     public User? LogIn([FromBody] JsonElement userLogin)
     {
         User? user = JsonSerializer.Deserialize<User?>(userLogin.GetRawText());
         return DBRepository.GetUserByUsername(user);
-    }
+    }*/
 }
 
 
