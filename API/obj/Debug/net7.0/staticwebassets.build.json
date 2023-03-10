@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Pe5ApAJu5tBOWP7Bqfpi+PqrNCCKjZgV0fwJZS7DGLI=",
+  "Hash": "diVNuBbvOZmDm43zAGmMHvAVoWXC3y/DcwdluyUXddk=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\Project2\\P2DamageControlBackEnd\\API\\wwwroot\\js\\SubmitClaim.js",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\Project2\\P2DamageControlBackEnd\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "js/SubmitClaim.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SubmitClaim.js"
     },
     {
       "Identity": "C:\\Users\\eperr\\Documents\\Revature Notes\\projects\\Project2\\P2DamageControlBackEnd\\API\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

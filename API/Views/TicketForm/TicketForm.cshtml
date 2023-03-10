@@ -64,17 +64,20 @@
 
 
                 <form style="margin-top: 0;" autocomplete="on">
-                    <input type="text" name="Amount" placeholder="Damage Amount" aria-label="Damage Amount" required>
+                    <input id="Amount" type="text" name="Amount" placeholder="Damage Amount" aria-label="Damage Amount"
+                        required>
                     <script src="@Url.Content("~/js/searchForDamager.js")"></script>
                     <datalist id="possibleheroes"></datalist>
                     <input onkeyup="retrieveDamagers()" id="Damager" type="search" name="Damager Name" autocomplete="on"
                         placeholder="Damager Name" aria-label="Damager Name" list="possibleheroes" required />
                     <input type="date" name="Date of Damage" aria-label="Date of Damage" required>
-                    <input type="paragraph" name="Description" aria-label="Description" required>
+                    <input type="text" id="Description" name="Description" aria-label="Description" required>
                     <fieldset>
 
                     </fieldset>
-                    <button type="submit" class="contrast" onclick="event.preventDefault()">Submit Claim</button>
+                    <script src="@Url.Content("~/js/SubmitClaim.js")"></script>
+                    <button type="submit" class="contrast" id="submitclaim" onclick="pushTicket(event)">Submit
+                        Claim</button>
                 </form>
             </div>
         </article>

@@ -2,7 +2,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using Models;
+using Data;
 
 namespace API.Controllers;
 
@@ -25,10 +27,26 @@ public class TicketFormController : Controller
         return View();
     }
     [HttpPost]
-    public Ticket? SubmitClaim(double Amount, string damager, DateTime dateOfDamage, string description)
+    public IActionResult SubmitClaim([FromBody] JsonElement claimData)
+
     {
-        //return services.RepositoryName(username, password);
-        return null;
+        try
+        {
+            var data = JsonSerializer.Deserialize<Body>(claimData.GetRawText());
+            Ticket newTicket = new Ticket(data.Amount, data.Description, data.Damager);
+
+            Console.WriteLine(data.Amount);
+            //Ticket newTicket = new Ticket(data.Amount, 1, data.dateOfDamage, description, damager);
+            new DBRepository().CreateNewTicket(newTicket);
+            return Json(new { success = true });
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return Json(new { success = false });
+
+        }
     }
 }
 
