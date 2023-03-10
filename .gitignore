@@ -5,6 +5,7 @@
 
 #Secrets
 **/Secrets.cs
+**/Secret.cs
 
 # Marks files
 MarksLessonsLearned.txt
