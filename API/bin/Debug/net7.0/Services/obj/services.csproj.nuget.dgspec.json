@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Revature\\project2teamA\\API\\API.csproj": {}
+    "C:\\Revature\\project2teamA\\Services\\services\\services.csproj": {}
   },
   "projects": {
-    "C:\\Revature\\project2teamA\\API\\API.csproj": {
+    "C:\\Revature\\project2teamA\\Services\\services\\services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Revature\\project2teamA\\API\\API.csproj",
-        "projectName": "API",
-        "projectPath": "C:\\Revature\\project2teamA\\API\\API.csproj",
+        "projectUniqueName": "C:\\Revature\\project2teamA\\Services\\services\\services.csproj",
+        "projectName": "services",
+        "projectPath": "C:\\Revature\\project2teamA\\Services\\services\\services.csproj",
         "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-        "outputPath": "C:\\Revature\\project2teamA\\API\\obj\\",
+        "outputPath": "C:\\Revature\\project2teamA\\Services\\services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,9 +49,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
