@@ -35,6 +35,7 @@ public class TicketFormController : Controller
             var data = JsonSerializer.Deserialize<Ticket>(claimData.GetRawText());
 
             Console.WriteLine(data.Amount);
+            Console.WriteLine(data.DamagerId);
             //Ticket newTicket = new Ticket(data.Amount, 1, data.dateOfDamage, description, damager);
             new DBRepository().CreateNewTicket(data);
             return Json(new { success = true });
