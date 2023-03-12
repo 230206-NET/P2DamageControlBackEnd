@@ -22,8 +22,11 @@ async function pushTicket(event) {
 async function getDamageId(damagerName){
     var hash = CryptoJS.MD5("16aed8bb2db92dc0d6f5e6ca7059b194ff52b92228ecae25f58b2e8b15e9eaded61953912").toString()
     return await fetch('https://gateway.marvel.com:443/v1/public/characters?ts=1&name=' + damagerName + '&apikey=8ecae25f58b2e8b15e9eaded61953912&hash=' + hash).then((res) => res.json()).then(data => {
-    console.log(data)
-    return data.data.results[0].id
+    try {
+        return data.data.results[0].id
+    } catch(err) {
+        window.alert("Not a valid character. Please try again")
+    }
         });
 
 }
