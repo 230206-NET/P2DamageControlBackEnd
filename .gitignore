@@ -19,6 +19,8 @@ MarksLessonsLearned.txt
 *.sln.docstates
 *.cache
 *.editorconfig
+*/obj/
+*/bin/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
