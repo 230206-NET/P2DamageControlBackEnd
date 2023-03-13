@@ -32,12 +32,12 @@ public class TicketFormController : Controller
     {
         try
         {
-            var data = JsonSerializer.Deserialize<Body>(claimData.GetRawText());
-            Ticket newTicket = new Ticket(data.Amount, data.Description, data.Damager);
+            var data = JsonSerializer.Deserialize<Ticket>(claimData.GetRawText());
 
             Console.WriteLine(data.Amount);
+            Console.WriteLine(data.DamagerId);
             //Ticket newTicket = new Ticket(data.Amount, 1, data.dateOfDamage, description, damager);
-            new DBRepository().CreateNewTicket(newTicket);
+            new DBRepository().CreateNewTicket(data);
             return Json(new { success = true });
 
         }

@@ -38,5 +38,11 @@ public class Ticket
         this.Description = Description;
         this.DamagerId = DamagerId;
     }
+    public Ticket()
+    {
+        SubmissionDate = DateTime.Today;
+        DamageDate = DateTime.Today;
+        this.ClientId = 1;
+    }
 
 }
