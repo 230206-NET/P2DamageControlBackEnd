@@ -14,4 +14,16 @@ public interface IRepository
     /// </summary>
     /// <returns>nothing -- for now</returns>
     void CreateNewTicket(Ticket newTicket);
+
+    /// <summary>
+    /// Retrieves an User by its username.
+    /// </summary>
+    /// <returns>an User object</returns>
+    User? GetUserByUsername(string Username);
+
+    /// <summary>
+    /// Persists a new ticket to storage
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
+    void CreateNewUser(User newUser);
 }
