@@ -42,8 +42,8 @@ public class DBRepository : IRepository
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
-        using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE Username = @Username", conn);
-        cmd.Parameters.AddWithValue("@Username", username);
+        using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE UPPER(Username) = @Username", conn);
+        cmd.Parameters.AddWithValue("@Username", Username.ToUpper());
         using SqlDataReader reader = cmd.ExecuteReader();
 
 
