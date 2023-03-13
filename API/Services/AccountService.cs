@@ -54,7 +54,7 @@ public class AccountService
     }
 
     //Return false if the username entered is not in the database
-    public boolean UsernameExists(string username)
+    public Boolean UsernameExists(string username)
     {
         if (RetrieveUsername(username) != null)
         {
@@ -66,7 +66,7 @@ public class AccountService
     //Stores information of a new user
     public User CreateAccount(User newUser)
     {
-        _repo.CreateAccount(newUser);
+        _repo.CreateNewUser(newUser);
         return newUser;
     }
 }
