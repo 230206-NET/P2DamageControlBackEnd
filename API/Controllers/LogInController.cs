@@ -9,38 +9,45 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Services;
 
 namespace API.Controllers;
 
 public class NewLogInController : Controller
 {
     private readonly ILogger<NewLogInController> _logger;
+    private readonly AccountService _service;
+    private readonly IRepository _dbrepository;
 
 
     public NewLogInController(ILogger<NewLogInController> logger)
     {
         _logger = logger;
+        _dbrepository = new DBRepository();
+        _service = new AccountService(_dbrepository);
     }
 
-    public IActionResult Index()
+    /*public IActionResult Index()
     {
         return View("NewLogin");
-    }
+    }*/
 
     public IActionResult Privacy()
     {
         return View();
     }
     [HttpPost]
-    public IActionResult LogIn([FromBody] LoginCredentials credentials)
+    public IActionResult LogIn([FromBody] LoginModel credentials)
     {
-        User? user = new DBRepository().GetUserByUsername(credentials.Username); //gonna switch to a struct... ill talk to them about it and see
+        Console.WriteLine(credentials);
+        User? user = _service.GetUserByUsername(credentials.Username);
 
-        if (User == null)
+        if (user == null)
         {
+            Console.WriteLine("Something went wrong");
             return BadRequest("Invalid client request");
         }
-        if (Services.PasswordService.VerifyPassword(credentials.Password, user.Password)) //do i use this method or the Login method since the password is hashed?
+        if (Services.PasswordService.VerifyPassword(credentials.Password, user.Password))
         {
             var claims = new List<Claim>
             {
@@ -51,8 +58,8 @@ public class NewLogInController : Controller
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("JustForTEsTINGGGG@THeMomENT4536435"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var tokeOptions = new JwtSecurityToken(
-                issuer: "https://localhost:7026",
-                audience: "https://localhost:7026",
+                issuer: "http://localhost:5025",
+                audience: "http://localhost:5025",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials
@@ -60,6 +67,7 @@ public class NewLogInController : Controller
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
             return Ok(new AuthenticatedResponse { Token = tokenString });
         }
+        Console.WriteLine("Credentials didn't match");
         return Unauthorized();
     }
 }

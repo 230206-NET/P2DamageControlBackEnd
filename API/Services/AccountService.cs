@@ -29,24 +29,7 @@ public class AccountService
         return _repo.GetUserByUserId(id);
     }
 
-    //If the entered username is in the system, checks that the password entered equals the password for that username, and returns true if so
-    public Boolean Login(string username, string password)
-    {
-        User user = GetUserByUsername(username);
-
-        if (user == null)
-        {
-            return false;
-        }
-        else if (user.Password.Equals(password))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+ 
 
     //Return false if the username entered is not in the database
     public Boolean UsernameExists(string username)
@@ -61,9 +44,11 @@ public class AccountService
     //Stores information of a new user
     public User CreateNewUser(User newUser)
     {
+        newUser.Password = PasswordService.HashAndSaltPassword(newUser.Password);
         _repo.CreateNewUser(newUser);
         return newUser;
     }
+
 
     public List<Ticket> GetAllTickets()
     {
