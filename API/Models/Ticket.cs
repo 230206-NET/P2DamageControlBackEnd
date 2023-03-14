@@ -10,6 +10,8 @@ public class Ticket
     public string Description { get; set; }
     public string DamagerId { get; set; }
 
+    public int TicketStatus { get; set; } = 0;
+
     public Ticket(int Id, decimal Amount, int ClientId, DateTime DamageDate, string Description, string DamagerId)
     {
         this.Id = Id;
