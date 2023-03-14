@@ -54,7 +54,7 @@ public class NewLogInController : Controller
                 issuer: "https://localhost:7026",
                 audience: "https://localhost:7026",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(5),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials
             );
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
