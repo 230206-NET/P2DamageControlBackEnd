@@ -63,6 +63,34 @@ public class DBRepository : IRepository
         return null;
     }
 
+    public User? GetUserByUserId(int Id)
+    {
+
+
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE User_ID = @UserId", conn);
+        cmd.Parameters.AddWithValue("@UserId", Id);
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+
+        while (reader.Read())
+        {
+            User? user = new User(
+                (int)reader["User_ID"],
+                (string)reader["Username"],
+                (string)reader["Hashed_Password"],
+                (string)reader["Full_Name"],
+                (string)reader["Email"],
+                (int)reader["Access_Level"]
+
+            );
+            return user;
+        }
+        return null;
+    }
+
     /// <summary>
     /// Persists a new ticket to storage
     /// </summary>
@@ -110,6 +138,18 @@ public class DBRepository : IRepository
         cmd.Parameters.AddWithValue("@Full_Name", newUser.FullName);
         cmd.Parameters.AddWithValue("@Email", newUser.Email);
         cmd.Parameters.AddWithValue("@AccessLevel", newUser.AccessLevel);
+
+        cmd.ExecuteNonQuery();
+    }
+
+    public void UpdateTicketStatus(int TicketID, int TicketStatus)
+    {
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("UPDATE tickets SET Ticket_Status = @tStatus Where Ticket_Num = @tId)", conn);
+        cmd.Parameters.AddWithValue("@tId", TicketID);
+        cmd.Parameters.AddWithValue("@tStatus", TicketStatus);
 
         cmd.ExecuteNonQuery();
     }
