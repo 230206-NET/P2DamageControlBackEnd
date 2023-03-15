@@ -29,7 +29,7 @@ public class AccountService
         return _repo.GetUserByUserId(id);
     }
 
- 
+
 
     //Return false if the username entered is not in the database
     public Boolean UsernameExists(string username)
@@ -68,6 +68,17 @@ public class AccountService
             filteredTicket = null;
         }
         return filteredTicket;
+    }
+
+    public List<Ticket> GetTicketsByUserId(int Id)
+    {
+        return _repo.GetTicketsByUserId(Id);
+    }
+
+    public Ticket CreateNewTicket(Ticket newTicket)
+    {
+        _repo.CreateNewTicket(newTicket);
+        return newTicket;
     }
 
     //Used to change ticket status to either accepted or rejected, allows for the input of some justification for the ruling, and applies the employee ID to the ticket to show who made the decision
