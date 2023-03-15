@@ -29,16 +29,17 @@ public class TicketFormController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult SubmitClaim([FromBody] Ticket? newTicket)
+    public IActionResult SubmitClaim([FromBody] NewTicketModel? newClaim)
 
     {
         Console.WriteLine("This is a received request");
 
-        if (newTicket == null)
+        if (newClaim == null)
         {
             Console.WriteLine("The ticket is null");
             return BadRequest("Invalid client request");
         }
+        Ticket newTicket = new Ticket(newClaim.Amount,newClaim.ClientId, newClaim.Description, "" + newClaim.DamagerId, newClaim.DamageDate);
         return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));
     }
 }
