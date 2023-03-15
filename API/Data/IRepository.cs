@@ -48,4 +48,6 @@ public interface IRepository
     /// <returns>nothing -- for now</returns>
     void UpdateUserAccessLevel(int UserID, int AccessLevel);
 
+    List<Ticket> GetTicketsByUserId(int Id);
+
 }

@@ -5,16 +5,21 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using Models;
 using Data;
+using Services;
 
 namespace API.Controllers;
 
 public class TicketFormController : Controller
 {
     private readonly ILogger<TicketFormController> _logger;
+    private readonly AccountService _service;
+    private readonly IRepository _dbrepository;
 
     public TicketFormController(ILogger<TicketFormController> logger)
     {
         _logger = logger;
+        _dbrepository = new DBRepository();
+        _service = new AccountService(_dbrepository);
     }
 
     public IActionResult Index()
@@ -27,26 +32,14 @@ public class TicketFormController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult SubmitClaim([FromBody] JsonElement claimData)
+    public IActionResult SubmitClaim([FromBody] Ticket? newTicket)
 
     {
-        try
+        if (newTicket == null)
         {
-            var data = JsonSerializer.Deserialize<Ticket>(claimData.GetRawText());
-
-            Console.WriteLine(data.Amount);
-            Console.WriteLine(data.DamagerId);
-            //Ticket newTicket = new Ticket(data.Amount, 1, data.dateOfDamage, description, damager);
-            new DBRepository().CreateNewTicket(data);
-            return Json(new { success = true });
-
+            return BadRequest("Invalid client request");
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return Json(new { success = false });
-
-        }
+        return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));
     }
 }
 

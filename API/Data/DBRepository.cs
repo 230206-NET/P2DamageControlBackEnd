@@ -34,6 +34,39 @@ public class DBRepository : IRepository
         }
         return allTickets;
     }
+
+    /// <summary>
+    /// Retrieves an Tickets by an userId.
+    /// </summary>
+    /// <returns>an List of Tickets</returns>
+    public List<Ticket> GetTicketsByUserId(int Id)
+    {
+        List<Ticket> filteredTickets = new List<Ticket>();
+
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("SELECT * FROM Tickets WHERE Ticket_Client_ID = @UserId", conn);
+        cmd.Parameters.AddWithValue("@UserId", Id);
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+
+        while (reader.Read())
+        {
+            filteredTickets.Add(new Ticket(
+                (int)reader["Ticket_Num"],
+                (decimal)reader["Ticket_Amount"],
+                (int)reader["Ticket_Client_ID"],
+                (DateTime)reader["Ticket_Submission_Date"],
+                (DateTime)reader["Ticket_Damage_Date"],
+                (string)reader["Ticket_Description"],
+                (string)reader["Ticket_Damager_Info"]
+            )
+            );
+        }
+        return filteredTickets;
+    }
+
     /// <summary>
     /// Retrieves all Users
     /// </summary>

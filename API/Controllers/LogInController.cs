@@ -51,6 +51,7 @@ public class NewLogInController : Controller
         {
             var claims = new List<Claim>
             {
+                new Claim(ClaimTypes.SerialNumber, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.GivenName, user.FullName),
                 new Claim(ClaimTypes.Role, user.AccessLevel.ToString())
