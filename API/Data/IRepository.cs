@@ -8,6 +8,11 @@ public interface IRepository
     /// </summary>
     /// <returns>a List of tickets</returns>
     List<Ticket> GetAllTickets();
+    /// <summary>
+    /// Retrieves all Users
+    /// </summary>
+    /// <returns>a List of users</returns>
+    List<User> GetAllUsers();
 
     /// <summary>
     /// Persists a new ticket to storage
@@ -20,18 +25,27 @@ public interface IRepository
     /// </summary>
     /// <returns>an User object</returns>
     User? GetUserByUsername(string Username);
-
+    /// <summary>
+    /// Retrieves an User by its userId.
+    /// </summary>
+    /// <returns>an User object</returns>
     User? GetUserByUserId(int Id);
 
     /// <summary>
-    /// Persists a new ticket to storage
+    /// Persists a new user to storage
     /// </summary>
     /// <returns>nothing -- for now</returns>
     void CreateNewUser(User newUser);
 
     /// <summary>
-    /// Retrieves a ticket to approve or deny
+    /// Retrieves a ticket to approve or deny, along with entering some justification and applying the employee ID to the ticket
     /// </summary>
     /// <returns>nothing -- for now</returns>
-    void UpdateTicketStatus(int TicketID, int TicketStatus);
+    void UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int userID);
+    /// <summary>
+    /// Retrieves a user to promote or demote
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
+    void UpdateUserAccessLevel(int UserID, int AccessLevel);
+
 }

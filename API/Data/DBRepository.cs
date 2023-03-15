@@ -34,7 +34,38 @@ public class DBRepository : IRepository
         }
         return allTickets;
     }
+    /// <summary>
+    /// Retrieves all Users
+    /// </summary>
+    /// <returns>a List of users</returns>
+    public List<User> GetAllUsers()
+    {
+        List<User> allUsers = new List<User>();
 
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("SELECT * FROM Users", conn);
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            allUsers.Add(new User(
+                (int)reader["User_ID"],
+                (string)reader["Username"],
+                (string)reader["Hashed_Password"],
+                (string)reader["Full_Name"],
+                (string)reader["Email"],
+                (int)reader["Access_Level"]
+            )
+            );
+        }
+        return allUsers;
+    }
+    /// <summary>
+    /// Retrieves an User by its username.
+    /// </summary>
+    /// <returns>an User object</returns>
     public User? GetUserByUsername(string Username)
     {
 
@@ -62,7 +93,10 @@ public class DBRepository : IRepository
         }
         return null;
     }
-
+    /// <summary>
+    /// Retrieves an User by its userId.
+    /// </summary>
+    /// <returns>an User object</returns>
     public User? GetUserByUserId(int Id)
     {
 
@@ -110,6 +144,10 @@ public class DBRepository : IRepository
 
     //     cmd.ExecuteNonQuery();
     // }
+    /// <summary>
+    /// Persists a new ticket to storage
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
     public void CreateNewTicket(Ticket newTicket)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -126,7 +164,10 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
-
+    /// <summary>
+    /// Persists a new user to storage
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
     public void CreateNewUser(User newUser)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -141,15 +182,35 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
-
-    public void UpdateTicketStatus(int TicketID, int TicketStatus)
+    /// <summary>
+    /// Retrieves a ticket to approve or deny, along with entering some justification and applying the employee ID to the ticket
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
+    public void UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int UserID)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
-        using SqlCommand cmd = new("UPDATE tickets SET Ticket_Status = @tStatus Where Ticket_Num = @tId)", conn);
+        using SqlCommand cmd = new("UPDATE tickets SET Ticket_Employee_ID = @UserId, Ticket_Status = @tStatus, Ticket_Justification = @tJustification Where Ticket_Num = @tId)", conn);
         cmd.Parameters.AddWithValue("@tId", TicketID);
+        cmd.Parameters.AddWithValue("@UserId", UserID);
         cmd.Parameters.AddWithValue("@tStatus", TicketStatus);
+        cmd.Parameters.AddWithValue("@tJustification", TicketJustification);
+
+        cmd.ExecuteNonQuery();
+    }
+    /// <summary>
+    /// Retrieves a user to promote or demote
+    /// </summary>
+    /// <returns>nothing -- for now</returns>
+    public void UpdateUserAccessLevel(int UserID, int AccessLevel)
+    {
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("UPDATE Users SET Access_Level = @uLevel Where User_ID = @uId)", conn);
+        cmd.Parameters.AddWithValue("@uId", UserID);
+        cmd.Parameters.AddWithValue("@uLevel", AccessLevel);
 
         cmd.ExecuteNonQuery();
     }

@@ -55,6 +55,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseHttpsRedirection();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.UseAuthentication(); //JWT
 
