@@ -173,7 +173,7 @@ public class DBRepository : IRepository
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
-        using SqlCommand cmd = new("INSERT into Users(Username, Hashed_Password, Full_Name, Email, AccessLevel) Values (@Username, @Hashed_Password, @Full_Name, @Email, @AccessLevel)", conn);
+        using SqlCommand cmd = new("INSERT into Users(Username, Hashed_Password, Full_Name, Email, Access_Level) Values (@Username, @Hashed_Password, @Full_Name, @Email, @AccessLevel)", conn);
         cmd.Parameters.AddWithValue("@Username", newUser.Username);
         cmd.Parameters.AddWithValue("@Hashed_Password", newUser.Password);
         cmd.Parameters.AddWithValue("@Full_Name", newUser.FullName);

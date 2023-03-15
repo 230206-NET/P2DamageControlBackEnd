@@ -34,4 +34,7 @@ public class User
         this.FullName = FullName;
         this.Email = Email;
     }
+    public User(){
+        
+    }
 }
