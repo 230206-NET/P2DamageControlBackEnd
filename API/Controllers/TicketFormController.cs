@@ -22,10 +22,7 @@ public class TicketFormController : Controller
         _service = new AccountService(_dbrepository);
     }
 
-    public IActionResult Index()
-    {
-        return View("TicketForm");
-    }
+
 
     public IActionResult Privacy()
     {
@@ -35,8 +32,11 @@ public class TicketFormController : Controller
     public IActionResult SubmitClaim([FromBody] Ticket? newTicket)
 
     {
+        Console.WriteLine("This is a received request");
+
         if (newTicket == null)
         {
+            Console.WriteLine("The ticket is null");
             return BadRequest("Invalid client request");
         }
         return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));

@@ -5,12 +5,12 @@ public class Ticket
     public int Id { get; set; }
     public decimal Amount { get; set; }
     public int ClientId { get; set; }
-    public int EmployeeId { get; set; }
+    public int EmployeeId { get; set; } = 0;
     public DateTime SubmissionDate { get; set; } = DateTime.Today;
     public DateTime DamageDate { get; set; }
     public string Description { get; set; }
     public string DamagerId { get; set; }
-    public string TicketJustification { get; set; }
+    public string TicketJustification { get; set; } = " ";
     public int TicketStatus { get; set; } = 0;
 
     public Ticket(int Id, decimal Amount, int ClientId, DateTime DamageDate, string Description, string DamagerId)
@@ -44,8 +44,6 @@ public class Ticket
     public Ticket()
     {
         SubmissionDate = DateTime.Today;
-        DamageDate = DateTime.Today;
-        this.ClientId = 1;
     }
 
 }
