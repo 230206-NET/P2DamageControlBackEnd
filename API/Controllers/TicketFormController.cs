@@ -22,23 +22,24 @@ public class TicketFormController : Controller
         _service = new AccountService(_dbrepository);
     }
 
-    public IActionResult Index()
-    {
-        return View("TicketForm");
-    }
+
 
     public IActionResult Privacy()
     {
         return View();
     }
     [HttpPost]
-    public IActionResult SubmitClaim([FromBody] Ticket? newTicket)
+    public IActionResult SubmitClaim([FromBody] NewTicketModel? newClaim)
 
     {
-        if (newTicket == null)
+        Console.WriteLine("This is a received request");
+
+        if (newClaim == null)
         {
+            Console.WriteLine("The ticket is null");
             return BadRequest("Invalid client request");
         }
+        Ticket newTicket = new Ticket(newClaim.Amount,newClaim.ClientId, newClaim.Description, "" + newClaim.DamagerId, newClaim.DamageDate);
         return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));
     }
 }
