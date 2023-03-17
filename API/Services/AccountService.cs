@@ -75,6 +75,11 @@ public class AccountService
         return _repo.GetTicketsByUserId(Id);
     }
 
+    public List<Ticket> GetPendingTickets()
+    {
+        return _repo.GetPendingTickets();
+    }
+
     public Ticket CreateNewTicket(Ticket newTicket)
     {
         _repo.CreateNewTicket(newTicket);

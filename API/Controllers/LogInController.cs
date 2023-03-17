@@ -47,7 +47,7 @@ public class NewLogInController : Controller
             Console.WriteLine("Something went wrong");
             return BadRequest("Invalid client request");
         }
-        if (Services.PasswordService.VerifyPassword(credentials.Password, user.Password))
+        if (PasswordService.VerifyPassword(credentials.Password, user.Password))
         {
             var claims = new List<Claim>
             {
