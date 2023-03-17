@@ -32,6 +32,19 @@ public class Ticket
         this.Description = Description;
         this.DamagerId = DamagerId;
     }
+    public Ticket(int Id, decimal Amount, int ClientId, int EmployeeId, DateTime SubmissionDate, DateTime DamageDate, string Description, string DamagerId, string TicketJustification, int TicketStatus)
+    {
+        this.Id = Id;
+        this.Amount = Amount;
+        this.ClientId = ClientId;
+        this.EmployeeId = EmployeeId;
+        this.SubmissionDate = SubmissionDate;
+        this.DamageDate = DamageDate;
+        this.Description = Description;
+        this.DamagerId = DamagerId;
+        this.TicketJustification = TicketJustification;
+        this.TicketStatus = TicketStatus;
+    }
     public Ticket(decimal Amount, int ClientId, string Description, string DamagerId, string DamageDate)
     {
         this.Amount = Amount;

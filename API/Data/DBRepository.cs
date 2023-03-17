@@ -25,10 +25,13 @@ public class DBRepository : IRepository
                 (int)reader["Ticket_Num"],
                 (decimal)reader["Ticket_Amount"],
                 (int)reader["Ticket_Client_ID"],
+                reader["Ticket_Employee_ID"] == DBNull.Value ? -1 : (int)reader["Ticket_Employee_ID"],
                 (DateTime)reader["Ticket_Submission_Date"],
                 (DateTime)reader["Ticket_Damage_Date"],
                 (string)reader["Ticket_Description"],
-                (string)reader["Ticket_Damager_Info"]
+                (string)reader["Ticket_Damager_Info"],
+                reader["Ticket_Justification"] == DBNull.Value ? " " : (string)reader["Ticket_Justification"],
+                (int)reader["Ticket_Status"]
             )
             );
         }
@@ -57,10 +60,44 @@ public class DBRepository : IRepository
                 (int)reader["Ticket_Num"],
                 (decimal)reader["Ticket_Amount"],
                 (int)reader["Ticket_Client_ID"],
+                reader["Ticket_Employee_ID"] == DBNull.Value ? -1 : (int)reader["Ticket_Employee_ID"],
                 (DateTime)reader["Ticket_Submission_Date"],
                 (DateTime)reader["Ticket_Damage_Date"],
                 (string)reader["Ticket_Description"],
-                (string)reader["Ticket_Damager_Info"]
+                (string)reader["Ticket_Damager_Info"],
+                reader["Ticket_Justification"] == DBNull.Value ? " " : (string)reader["Ticket_Justification"],
+                (int)reader["Ticket_Status"]
+            )
+            );
+        }
+        return filteredTickets;
+    }
+
+    public List<Ticket> GetPendingTickets()
+    {
+        List<Ticket> filteredTickets = new List<Ticket>();
+
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("SELECT * FROM Tickets WHERE Ticket_Status = 0", conn);
+        //cmd.Parameters.AddWithValue("@TicketStatus", TicketStatus); maybe for later use.
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+
+        while (reader.Read())
+        {
+            filteredTickets.Add(new Ticket(
+                (int)reader["Ticket_Num"],
+                (decimal)reader["Ticket_Amount"],
+                (int)reader["Ticket_Client_ID"],
+                reader["Ticket_Employee_ID"] == DBNull.Value ? -1 : (int)reader["Ticket_Employee_ID"],
+                (DateTime)reader["Ticket_Submission_Date"],
+                (DateTime)reader["Ticket_Damage_Date"],
+                (string)reader["Ticket_Description"],
+                (string)reader["Ticket_Damager_Info"],
+                reader["Ticket_Justification"] == DBNull.Value ? " " : (string)reader["Ticket_Justification"],
+                (int)reader["Ticket_Status"]
             )
             );
         }

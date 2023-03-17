@@ -47,7 +47,15 @@ public interface IRepository
     /// </summary>
     /// <returns>nothing -- for now</returns>
     void UpdateUserAccessLevel(int UserID, int AccessLevel);
-
+    /// <summary>
+    /// Retrieves a list of tickets for the specified user
+    /// </summary>
+    /// <returns>a Ticket List</returns>
     List<Ticket> GetTicketsByUserId(int Id);
+    /// <summary>
+    /// Retrieves a list of pending tickets
+    /// </summary>
+    /// <returns>a Ticket List</returns>
+    List<Ticket> GetPendingTickets();
 
 }
