@@ -13,6 +13,7 @@ public interface IRepository
     /// </summary>
     /// <returns>a List of users</returns>
     List<User> GetAllUsers();
+    void UpdateUserInfo(User modUser);
 
     /// <summary>
     /// Persists a new ticket to storage

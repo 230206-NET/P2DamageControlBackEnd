@@ -22,24 +22,40 @@ public class InformationController : Controller
         _service = new AccountService(_dbrepository);
     }
 
-
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpPost]
-    public IActionResult SubmitClaim([FromBody] NewTicketModel? newClaim)
+    public IActionResult ChangeInfo([FromBody] User? modifiedUser)
 
     {
         Console.WriteLine("This is a received request");
 
-        if (newClaim == null)
+        if (modifiedUser != null)
         {
-            Console.WriteLine("The ticket is null");
+            _dbrepository.UpdateUserInfo(modifiedUser);
+            return Ok();
+        }
+        else{
+            Console.WriteLine("The User was not received");
+            return BadRequest("Invalid client request");
+
+        }
+    }
+    [HttpGet]
+    public IActionResult Info([FromBody] UserRequestModel user)
+
+    {
+        Console.WriteLine("This is a received request");
+
+        if (user == null)
+        {
             return BadRequest("Invalid client request");
         }
-        Ticket newTicket = new Ticket(newClaim.Amount,newClaim.ClientId, newClaim.Description, "" + newClaim.DamagerId, newClaim.DamageDate);
-        return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));
+        User? specifiedUser = _dbrepository.GetUserByUserId(user.Id);
+        if (specifiedUser != null){
+        specifiedUser.Password = "N/A";
+        return Ok(user);
+        }
+        else{
+            return BadRequest("Invalid user information. Please log in again");
+        }
     }
 }
