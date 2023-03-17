@@ -13,14 +13,12 @@ public class RegisterController : Controller
 {
     private readonly ILogger<RegisterController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
 
-    public RegisterController(ILogger<RegisterController> logger)
+    public RegisterController(ILogger<RegisterController> logger, AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
+        _service = service;
     }
 
 

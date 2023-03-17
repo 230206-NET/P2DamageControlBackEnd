@@ -13,16 +13,14 @@ public class InformationController : Controller
 {
     private readonly ILogger<TicketFormController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
-    public InformationController(ILogger<TicketFormController> logger)
+    public InformationController(ILogger<TicketFormController> logger, AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
+        _service = service;
     }
 
-    [HttpPost]
+    [HttpPut]
     public IActionResult ChangeInfo([FromBody] User? modifiedUser)
 
     {
@@ -30,8 +28,11 @@ public class InformationController : Controller
 
         if (modifiedUser != null)
         {
-            _dbrepository.UpdateUserInfo(modifiedUser);
-            return Ok();
+            Console.WriteLine(modifiedUser.Email);
+            if(modifiedUser.Password != "N/A"){
+            modifiedUser.Password = PasswordService.HashAndSaltPassword(modifiedUser.Password);
+            }
+            return Accepted("Information/ChangeInfo", _service.UpdateUserInfo(modifiedUser));
         }
         else{
             Console.WriteLine("The User was not received");
@@ -39,7 +40,7 @@ public class InformationController : Controller
 
         }
     }
-    [HttpGet]
+    [HttpPost]
     public IActionResult Info([FromBody] UserRequestModel user)
 
     {
@@ -49,10 +50,10 @@ public class InformationController : Controller
         {
             return BadRequest("Invalid client request");
         }
-        User? specifiedUser = _dbrepository.GetUserByUserId(user.Id);
+        User? specifiedUser = _service.GetUserByUserId(user.id);
         if (specifiedUser != null){
         specifiedUser.Password = "N/A";
-        return Ok(user);
+        return Ok(specifiedUser);
         }
         else{
             return BadRequest("Invalid user information. Please log in again");

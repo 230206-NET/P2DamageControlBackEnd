@@ -8,29 +8,27 @@ using Services;
 
 namespace API.Controllers;
 
-public class ClientViewTickets : Controller
+public class ClientViewTicketsController : Controller
 {
-    private readonly ILogger<ClientViewTickets> _logger;
+    private readonly ILogger<ClientViewTicketsController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
-    public ClientViewTickets(ILogger<ClientViewTickets> logger)
+    public ClientViewTicketsController(ILogger<ClientViewTicketsController> logger,  AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
+        _service = service;
     }
 
     public IActionResult Privacy()
     {
         return View();
     }
-    [HttpGet]
-    public IActionResult GetAllClaims([FromBody] int? UserId)
+    [HttpPut]
+    public IActionResult GetAllClaims([FromBody] UserRequestModel Id)
     {
-        if (UserId.HasValue)
+        if (Id.id != 0)
         {
-            return Ok(_service.GetTicketsByUserId(UserId.Value));
+            return Ok(_service.GetTicketsByUserId(Id.id));
         }
         else
         {

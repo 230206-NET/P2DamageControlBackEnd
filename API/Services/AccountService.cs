@@ -18,6 +18,11 @@ public class AccountService
         return _repo.GetAllUsers();
     }
 
+    public User UpdateUserInfo(User user){
+        _repo.UpdateUserInfo(user);
+        return user;
+    }
+
     //Check for a username in the database that equals some entered username
     public User? GetUserByUsername(string username)
     {

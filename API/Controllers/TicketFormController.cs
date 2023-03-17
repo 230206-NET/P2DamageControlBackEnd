@@ -13,13 +13,11 @@ public class TicketFormController : Controller
 {
     private readonly ILogger<TicketFormController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
-    public TicketFormController(ILogger<TicketFormController> logger)
+    public TicketFormController(ILogger<TicketFormController> logger, AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
+        _service = service;
     }
 
 

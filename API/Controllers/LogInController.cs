@@ -17,14 +17,12 @@ public class NewLogInController : Controller
 {
     private readonly ILogger<NewLogInController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
 
-    public NewLogInController(ILogger<NewLogInController> logger)
+    public NewLogInController(ILogger<NewLogInController> logger,  AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
+        _service = service;
     }
 
     /*public IActionResult Index()

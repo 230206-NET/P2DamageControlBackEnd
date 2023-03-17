@@ -8,23 +8,15 @@ using Services;
 
 namespace API.Controllers;
 
-public class EmployeeViewTickets : Controller
+public class EmployeeViewTicketsController : Controller
 {
-    private readonly ILogger<EmployeeViewTickets> _logger;
+    private readonly ILogger<EmployeeViewTicketsController> _logger;
     private readonly AccountService _service;
-    private readonly IRepository _dbrepository;
 
-    public EmployeeViewTickets(ILogger<EmployeeViewTickets> logger)
+    public EmployeeViewTicketsController(ILogger<EmployeeViewTicketsController> logger, AccountService service)
     {
         _logger = logger;
-        _dbrepository = new DBRepository();
-        _service = new AccountService(_dbrepository);
-    }
-
-    public IActionResult Index()
-    {
-        ViewBag.CurrentCategory = GetAllClaims();
-        return View("EmployeeViewTickets");
+        _service = service;
     }
 
     public IActionResult Privacy()
@@ -45,6 +37,6 @@ public class EmployeeViewTickets : Controller
     [HttpPut]
     public IActionResult UpdateTicketStatus([FromBody] TicketStatusChange ticketstatus)
     {
-        return Accepted("EmployeViewTickets/UpdateTicketStatus", _service.UpdateTicketStatus(ticketstatus.UserId, ticketstatus.Status, ticketstatus.Justification, ticketstatus.UserId));
+        return Accepted("EmployeeViewTickets/UpdateTicketStatus", _service.UpdateTicketStatus(ticketstatus.TicketId, ticketstatus.Status, ticketstatus.Justification, ticketstatus.UserId));
     }
 }

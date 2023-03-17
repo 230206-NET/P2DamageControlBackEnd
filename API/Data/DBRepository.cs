@@ -261,7 +261,7 @@ public class DBRepository : IRepository
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
-        using SqlCommand cmd = new("UPDATE tickets SET Ticket_Employee_ID = @UserId, Ticket_Status = @tStatus, Ticket_Justification = @tJustification Where Ticket_Num = @tId)", conn);
+        using SqlCommand cmd = new("UPDATE Tickets SET Ticket_Employee_ID = @UserId, Ticket_Status = @tStatus, Ticket_Justification = @tJustification Where Ticket_Num = @tId", conn);
         cmd.Parameters.AddWithValue("@tId", TicketID);
         cmd.Parameters.AddWithValue("@UserId", UserID);
         cmd.Parameters.AddWithValue("@tStatus", TicketStatus);
@@ -287,19 +287,24 @@ public class DBRepository : IRepository
     public void UpdateUserInfo(User user){
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
-        if (!string.IsNullOrWhiteSpace(user.Password)){
-        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID");
+        Console.WriteLine("About to change info");
+        if (user.Password != "N/A"){
+            Console.WriteLine("Password updated");
+        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
         cmd.Parameters.AddWithValue("@Username", user.Username);
         cmd.Parameters.AddWithValue("@Hashed_Password", user.Password);
         cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
         cmd.Parameters.AddWithValue("@Email", user.Email);
         cmd.Parameters.AddWithValue("@uId", user.Id);
+        cmd.ExecuteNonQuery();
         } else{
-        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID");
+        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
         cmd.Parameters.AddWithValue("@Username", user.Username);
         cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
         cmd.Parameters.AddWithValue("@Email", user.Email);
         cmd.Parameters.AddWithValue("@uId", user.Id);
+            Console.WriteLine("password not updated");
+        cmd.ExecuteNonQuery();
         }
     }
 }

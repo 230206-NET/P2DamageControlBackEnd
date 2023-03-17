@@ -8,7 +8,8 @@ using Data;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<IRepository, DBRepository>();
+builder.Services.AddScoped<AccountService>();
 builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -42,7 +43,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 app.UseCors("EnableCORS");
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
