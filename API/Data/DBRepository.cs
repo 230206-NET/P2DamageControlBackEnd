@@ -284,4 +284,22 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
+    public void UpdateUserInfo(User user){
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+        if (!string.IsNullOrWhiteSpace(user.Password)){
+        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID");
+        cmd.Parameters.AddWithValue("@Username", user.Username);
+        cmd.Parameters.AddWithValue("@Hashed_Password", user.Password);
+        cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
+        cmd.Parameters.AddWithValue("@Email", user.Email);
+        cmd.Parameters.AddWithValue("@uId", user.Id);
+        } else{
+        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID");
+        cmd.Parameters.AddWithValue("@Username", user.Username);
+        cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
+        cmd.Parameters.AddWithValue("@Email", user.Email);
+        cmd.Parameters.AddWithValue("@uId", user.Id);
+        }
+    }
 }
