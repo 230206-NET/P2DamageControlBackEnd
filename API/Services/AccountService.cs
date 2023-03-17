@@ -115,11 +115,6 @@ public class AccountService
             UpdateTicketStatus(ticketToEdit.Id, TicketStatus, TicketJustification, userID);
             return GetTicketById(ticketToEdit.Id);
         }
-        else if (ticketToEdit != null && ticketToEdit.TicketStatus == 0 && editor.AccessLevel >= 4)
-        {
-            UpdateTicketStatus(ticketToEdit.Id, TicketStatus, TicketJustification, userID);
-            return GetTicketById(ticketToEdit.Id);
-        }
         else
         {
             return null;
@@ -138,7 +133,7 @@ public class AccountService
     {
         User admin = GetUserByUserId(AdminID);
 
-        if (admin == null || admin.AccessLevel != 5)
+        if (admin == null || admin.AccessLevel != 3)
         {
             return null;
         }
