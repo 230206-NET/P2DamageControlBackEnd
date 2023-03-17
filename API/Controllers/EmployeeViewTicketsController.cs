@@ -41,4 +41,10 @@ public class EmployeeViewTickets : Controller
     {
         return Ok(_service.GetPendingTickets());
     }
+
+    [HttpPost]
+    public IActionResult UpdateTicketStatus([FromBody] TicketStatusChange ticketstatus)
+    {
+        return Accepted("EmployeViewTickets/UpdateTicketStatus", _service.UpdateTicketStatus(ticketstatus.UserId, ticketstatus.Status, ticketstatus.Justification, ticketstatus.UserId));
+    }
 }

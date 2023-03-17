@@ -87,9 +87,10 @@ public class AccountService
     }
 
     //Used to change ticket status to either accepted or rejected, allows for the input of some justification for the ruling, and applies the employee ID to the ticket to show who made the decision
-    public void UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int userID)
+    public Ticket UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int userID)
     {
         _repo.UpdateTicketStatus(TicketID, TicketStatus, TicketJustification, userID);
+        return GetTicketById(TicketID);
     }
 
     //Finds a user with the given userID, finds a ticket with the given ticketId, and checks if the user has the authorization
