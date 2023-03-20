@@ -290,7 +290,7 @@ public class DBRepository : IRepository
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
-        using SqlCommand cmd = new("UPDATE Users SET Access_Level = @uLevel Where User_ID = @uId)", conn);
+        using SqlCommand cmd = new("UPDATE Users SET Access_Level = @uLevel Where User_ID = @uId", conn);
         cmd.Parameters.AddWithValue("@uId", UserID);
         cmd.Parameters.AddWithValue("@uLevel", AccessLevel);
 
