@@ -37,6 +37,6 @@ public class EmployeeViewTicketsController : Controller
     [HttpPut]
     public IActionResult UpdateTicketStatus([FromBody] TicketStatusChange ticketstatus)
     {
-        return Accepted("EmployeeViewTickets/UpdateTicketStatus", _service.UpdateTicketStatus(ticketstatus.TicketId, ticketstatus.Status, ticketstatus.Justification, ticketstatus.UserId));
+        return Accepted("EmployeeViewTickets/UpdateTicketStatus", _service.UpdateTicketStatusWithUserId(ticketstatus.UserId, ticketstatus.TicketId, ticketstatus.Status, ticketstatus.Justification));
     }
 }

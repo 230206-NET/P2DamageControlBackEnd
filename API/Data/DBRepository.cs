@@ -234,6 +234,18 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
+
+    public void DeclineAllPendingTicketsForUserId(int UserId)
+    {
+        using SqlConnection conn = new(Secrets.getConnectionString());
+        conn.Open();
+
+        using SqlCommand cmd = new("UPDATE Tickets SET Ticket_Status = 2 WHERE Ticket_Client_ID = @UserId AND Ticket_Status = 0", conn);
+        cmd.Parameters.AddWithValue("@UserId", UserId);
+
+        cmd.ExecuteNonQuery();
+    }
+
     /// <summary>
     /// Persists a new user to storage
     /// </summary>
@@ -284,27 +296,31 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
-    public void UpdateUserInfo(User user){
+    public void UpdateUserInfo(User user)
+    {
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
         Console.WriteLine("About to change info");
-        if (user.Password != "N/A"){
+        if (user.Password != "N/A")
+        {
             Console.WriteLine("Password updated");
-        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
-        cmd.Parameters.AddWithValue("@Username", user.Username);
-        cmd.Parameters.AddWithValue("@Hashed_Password", user.Password);
-        cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
-        cmd.Parameters.AddWithValue("@Email", user.Email);
-        cmd.Parameters.AddWithValue("@uId", user.Id);
-        cmd.ExecuteNonQuery();
-        } else{
-        using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
-        cmd.Parameters.AddWithValue("@Username", user.Username);
-        cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
-        cmd.Parameters.AddWithValue("@Email", user.Email);
-        cmd.Parameters.AddWithValue("@uId", user.Id);
+            using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
+            cmd.Parameters.AddWithValue("@Username", user.Username);
+            cmd.Parameters.AddWithValue("@Hashed_Password", user.Password);
+            cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
+            cmd.Parameters.AddWithValue("@uId", user.Id);
+            cmd.ExecuteNonQuery();
+        }
+        else
+        {
+            using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
+            cmd.Parameters.AddWithValue("@Username", user.Username);
+            cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
+            cmd.Parameters.AddWithValue("@uId", user.Id);
             Console.WriteLine("password not updated");
-        cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
         }
     }
 }

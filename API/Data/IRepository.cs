@@ -59,4 +59,6 @@ public interface IRepository
     /// <returns>a Ticket List</returns>
     List<Ticket> GetPendingTickets();
 
+    void DeclineAllPendingTicketsForUserId(int UserId);
+
 }

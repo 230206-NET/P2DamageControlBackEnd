@@ -18,7 +18,8 @@ public class AccountService
         return _repo.GetAllUsers();
     }
 
-    public User UpdateUserInfo(User user){
+    public User UpdateUserInfo(User user)
+    {
         _repo.UpdateUserInfo(user);
         return user;
     }
@@ -121,7 +122,7 @@ public class AccountService
             UpdateTicketStatus(ticketToEdit.Id, TicketStatus, TicketJustification, userID);
             return GetTicketById(ticketToEdit.Id);
         }
-        else if (ticketToEdit != null && ticketToEdit.TicketStatus == 0 && ticketToEdit.Amount <= 10000 && editor.AccessLevel >= 3)
+        else if (ticketToEdit != null && ticketToEdit.TicketStatus == 0 && editor.AccessLevel >= 3)
         {
             UpdateTicketStatus(ticketToEdit.Id, TicketStatus, TicketJustification, userID);
             return GetTicketById(ticketToEdit.Id);
@@ -136,6 +137,11 @@ public class AccountService
     public void UpdateUserAccessLevel(int UserID, int AccessLevel)
     {
         _repo.UpdateUserAccessLevel(UserID, AccessLevel);
+    }
+
+    public void DeclineAllPendingTicketsForUserId(int userId)
+    {
+        _repo.DeclineAllPendingTicketsForUserId(userId);
     }
 
     //Checks if the user with the given AdminID is an admin, if so will find user with the given UserId and allow admin to
@@ -154,6 +160,7 @@ public class AccountService
         if (userToEdit != null)
         {
             UpdateUserAccessLevel(userToEdit.Id, AccessLevel);
+            DeclineAllPendingTicketsForUserId(userToEdit.Id);
             return GetUserByUserId(userToEdit.Id);
         }
         else
