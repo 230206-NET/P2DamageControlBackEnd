@@ -58,7 +58,9 @@ public interface IRepository
     /// </summary>
     /// <returns>a Ticket List</returns>
     List<Ticket> GetPendingTickets();
-
+    /// <summary>
+    /// Declines all tickets for a specific user
+    /// </summary>
     void DeclineAllPendingTicketsForUserId(int UserId);
 
 }
