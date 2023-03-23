@@ -27,12 +27,6 @@ public class ClientViewTicketsControllerTests
     }
 
     [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
-    [Fact]
     public void Client_View_Tickets_Returns_Ok()
     {
         UserRequestModel Id = new UserRequestModel();
@@ -48,9 +42,6 @@ public class ClientViewTicketsControllerTests
     {
         UserRequestModel Id = new UserRequestModel();
         Id.id = 0;
-        // _mockservice.Setup(p => p.GetTicketsByUserId(Id.id)).Returns(new List<Ticket>{
-        //     new Ticket(1, (decimal) 10.5, 3, new System.DateTime(), new System.DateTime(), "Filler", "1")
-        // });
         var result = _controller.GetAllClaims(Id);
         Assert.IsType<BadRequestObjectResult>(result);
     }
@@ -69,12 +60,6 @@ public class EmployeeViewTicketsControllerTests
         _mockIlogger = new Mock<ILogger<EmployeeViewTicketsController>>();
         _mockservice = new Mock<AccountService>(_mockRepo);
         _controller = new EmployeeViewTicketsController(_mockIlogger.Object, _mockservice.Object);
-    }
-    [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
     }
     [Fact]
     public void Employee_View_Tickets()
@@ -119,12 +104,6 @@ public class LogInControllerTests
         _controller = new NewLogInController(_mockIlogger.Object, _mockservice.Object);
     }
     [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
-    [Fact]
     public void ShouldLogInUser()
     {
         LoginModel loginModel = new LoginModel("6OfCrows", "Jordie");
@@ -163,12 +142,6 @@ public class RegisterControllerTests
         _controller = new RegisterController(_mockIlogger.Object, _mockservice.Object);
     }
     [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
-    [Fact]
     public void RegisterShouldReturnCreated()
     {
         User newUser = new User(1, "test", "testpw", "Test User", "test@test.com", 0);
@@ -194,12 +167,6 @@ public class TicketFormControllerTests
         _mockIlogger = new Mock<ILogger<TicketFormController>>();
         _mockservice = new Mock<AccountService>(_mockRepo);
         _controller = new TicketFormController(_mockIlogger.Object, _mockservice.Object);
-    }
-    [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
     }
     [Fact]
     public void SubmitClaimShouldReturnBadRequest()
@@ -233,23 +200,12 @@ public class EmployeeAdminControllerTests
         _mockservice = new Mock<AccountService>(_mockRepo);
         _controller = new EmployeeAdminController(_mockIlogger.Object, _mockservice.Object);
     }
-    [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
 
     [Fact]
     public void Admin_UpdateUserAccessLevel_Returns_Ok()
     {
         EmployeeLevelChange ELC = new EmployeeLevelChange(1, 2, 3);
-        // ELC.AdminId = 1;
-        // ELC.UserId = 2;
-        // ELC.AccessLevel = 3;
         User newUser = new User(1, "test", "testpw", "Test User", "test@test.com", 0);
-        // UserRequestModel Id = new UserRequestModel();
-        // Id.id = 1;
         _mockservice.Setup(p => p.UpdateUserAccessLevelWithUserId(ELC.AdminId, ELC.UserId, ELC.AccessLevel)).Returns(newUser);
         var result = _controller.UpdateUserAccessLevel(ELC);
         Assert.IsType<OkObjectResult>(result);
@@ -269,5 +225,59 @@ public class EmployeeAdminControllerTests
     {
         var result = _controller.UpdateUserAccessLevel(null);
         Assert.IsType<BadRequestObjectResult>(result);
+    }
+}
+public class InformationControllerTests
+{
+    private readonly InformationController _controller;
+    private readonly Mock<IRepository> _mockRepo;
+    private readonly Mock<ILogger<InformationController>> _mockIlogger;
+    private readonly Mock<AccountService> _mockservice;
+
+    public InformationControllerTests()
+    {
+        _mockIlogger = new Mock<ILogger<InformationController>>();
+        _mockservice = new Mock<AccountService>(_mockRepo);
+        _controller = new InformationController(_mockIlogger.Object, _mockservice.Object);
+    }
+
+    [Fact]
+    public void Change_Info_Returns_Accepted()
+    {
+        User newUser = new User(1, "testuser", "testpassword", "Test Name", "test@test.com", 3);
+        _mockservice.Setup(x => x.UpdateUserInfo(newUser)).Returns(newUser);
+        var result = _controller.ChangeInfo(newUser);
+        Assert.IsType<AcceptedResult>(result);
+    }
+
+    [Fact]
+    public void ChangeInfoReturnsBadRequest()
+    {
+        var result = _controller.ChangeInfo(null);
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+    [Fact]
+    public void InfoShouldReturnBadRequestForNullUser()
+    {
+        var result = _controller.Info(null);
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+    [Fact]
+    public void InfoShouldReturnBadRequestForNullSpecifiedUser()
+    {
+        UserRequestModel user = new UserRequestModel();
+        user.id = 1;
+        _mockservice.Setup(x => x.GetUserByUserId(user.id)).Returns((User)null);
+        var result = _controller.Info(user);
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+    [Fact]
+    public void InfoShouldReturnOk()
+    {
+        UserRequestModel user = new UserRequestModel();
+        user.id = 1;
+        _mockservice.Setup(x => x.GetUserByUserId(user.id)).Returns(new User(1, "testuser", "testpassword", "Test Name", "test@test.com", 3));
+        var result = _controller.Info(user);
+        Assert.IsType<OkObjectResult>(result);
     }
 }

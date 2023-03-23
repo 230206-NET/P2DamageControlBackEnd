@@ -21,12 +21,6 @@ public class RegisterController : Controller
         _service = service;
     }
 
-
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpPost]
     public IActionResult Register([FromBody] User? newUser)
     {

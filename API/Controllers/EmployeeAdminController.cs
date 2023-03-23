@@ -18,11 +18,6 @@ public class EmployeeAdminController : Controller
         _logger = logger;
         _service = service;
     }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpPut]
     public IActionResult UpdateUserAccessLevel([FromBody] EmployeeLevelChange ELC)
     {

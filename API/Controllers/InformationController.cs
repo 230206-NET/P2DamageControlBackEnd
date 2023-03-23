@@ -11,10 +11,10 @@ namespace API.Controllers;
 
 public class InformationController : Controller
 {
-    private readonly ILogger<TicketFormController> _logger;
+    private readonly ILogger<InformationController> _logger;
     private readonly AccountService _service;
 
-    public InformationController(ILogger<TicketFormController> logger, AccountService service)
+    public InformationController(ILogger<InformationController> logger, AccountService service)
     {
         _logger = logger;
         _service = service;
@@ -29,12 +29,14 @@ public class InformationController : Controller
         if (modifiedUser != null)
         {
             Console.WriteLine(modifiedUser.Email);
-            if(modifiedUser.Password != "N/A"){
-            modifiedUser.Password = PasswordService.HashAndSaltPassword(modifiedUser.Password);
+            if (modifiedUser.Password != "N/A")
+            {
+                modifiedUser.Password = PasswordService.HashAndSaltPassword(modifiedUser.Password);
             }
             return Accepted("Information/ChangeInfo", _service.UpdateUserInfo(modifiedUser));
         }
-        else{
+        else
+        {
             Console.WriteLine("The User was not received");
             return BadRequest("Invalid client request");
 
@@ -51,11 +53,13 @@ public class InformationController : Controller
             return BadRequest("Invalid client request");
         }
         User? specifiedUser = _service.GetUserByUserId(user.id);
-        if (specifiedUser != null){
-        specifiedUser.Password = "N/A";
-        return Ok(specifiedUser);
+        if (specifiedUser != null)
+        {
+            specifiedUser.Password = "N/A";
+            return Ok(specifiedUser);
         }
-        else{
+        else
+        {
             return BadRequest("Invalid user information. Please log in again");
         }
     }

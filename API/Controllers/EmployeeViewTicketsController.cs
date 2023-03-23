@@ -19,10 +19,6 @@ public class EmployeeViewTicketsController : Controller
         _service = service;
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpGet]
     public IActionResult GetAllClaims()
     {

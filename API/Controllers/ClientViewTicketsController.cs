@@ -13,15 +13,10 @@ public class ClientViewTicketsController : Controller
     private readonly ILogger<ClientViewTicketsController> _logger;
     private readonly AccountService _service;
 
-    public ClientViewTicketsController(ILogger<ClientViewTicketsController> logger,  AccountService service)
+    public ClientViewTicketsController(ILogger<ClientViewTicketsController> logger, AccountService service)
     {
         _logger = logger;
         _service = service;
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
     [HttpPut]
     public IActionResult GetAllClaims([FromBody] UserRequestModel Id)
