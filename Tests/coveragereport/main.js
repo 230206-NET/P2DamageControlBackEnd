@@ -221,13 +221,13 @@ var assemblies = [
   {
     "name": "API",
     "classes": [
-      { "name": "API.Controllers.ClientViewTicketsController", "rp": "API_ClientViewTicketsController.html", "cl": 0, "ucl": 15, "cal": 15, "tl": 40, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "API.Controllers.EmployeeViewTicketsController", "rp": "API_EmployeeViewTicketsController.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 42, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "API.Controllers.IndexController", "rp": "API_IndexController.html", "cl": 0, "ucl": 13, "cal": 13, "tl": 32, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.ClientViewTicketsController", "rp": "API_ClientViewTicketsController.html", "cl": 8, "ucl": 7, "cal": 15, "tl": 40, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.EmployeeViewTicketsController", "rp": "API_EmployeeViewTicketsController.html", "cl": 8, "ucl": 9, "cal": 17, "tl": 42, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.IndexController", "rp": "API_IndexController.html", "cl": 7, "ucl": 6, "cal": 13, "tl": 32, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "API.Controllers.InformationController", "rp": "API_InformationController.html", "cl": 0, "ucl": 30, "cal": 30, "tl": 62, "cb": 0, "tb": 8, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "API.Controllers.NewLogInController", "rp": "API_NewLogInController.html", "cl": 0, "ucl": 38, "cal": 38, "tl": 74, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "API.Controllers.RegisterController", "rp": "API_RegisterController.html", "cl": 0, "ucl": 14, "cal": 14, "tl": 41, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "API.Controllers.TicketFormController", "rp": "API_TicketFormController.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 45, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.NewLogInController", "rp": "API_NewLogInController.html", "cl": 8, "ucl": 30, "cal": 38, "tl": 74, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.RegisterController", "rp": "API_RegisterController.html", "cl": 8, "ucl": 6, "cal": 14, "tl": 41, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "API.Controllers.TicketFormController", "rp": "API_TicketFormController.html", "cl": 8, "ucl": 9, "cal": 17, "tl": 45, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "API.Models.ErrorViewModel", "rp": "API_ErrorViewModel.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "AspNetCoreGeneratedDocument.Views_Index_Index", "rp": "API_Views_Index_Index.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 145, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "AspNetCoreGeneratedDocument.Views_NewLogin_NewLogin", "rp": "API_Views_NewLogin_NewLogin.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 92, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -244,12 +244,8 @@ var assemblies = [
       { "name": "Models.User", "rp": "API_User.html", "cl": 32, "ucl": 0, "cal": 32, "tl": 40, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Models.UserRequestModel", "rp": "API_UserRequestModel.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 4, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "API_Program.html", "cl": 0, "ucl": 50, "cal": 50, "tl": 71, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Services.AccountService", "rp": "API_AccountService.html", "cl": 0, "ucl": 93, "cal": 93, "tl": 164, "cb": 0, "tb": 36, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Services.AccountService", "rp": "API_AccountService.html", "cl": 4, "ucl": 89, "cal": 93, "tl": 164, "cb": 0, "tb": 36, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "Services.PasswordService", "rp": "API_PasswordService.html", "cl": 0, "ucl": 37, "cal": 37, "tl": 70, "cb": 0, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Tests.AuthenticatedResponseTests", "rp": "API_AuthenticatedResponseTests.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 81, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Tests.ErrorViewModelTests", "rp": "API_ErrorViewModelTests.html", "cl": 0, "ucl": 9, "cal": 9, "tl": 81, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Tests.NewTicketsModelTests", "rp": "API_NewTicketsModelTests.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 81, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "Tests.TicketTests", "rp": "API_TicketTests.html", "cl": 0, "ucl": 12, "cal": 12, "tl": 81, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
