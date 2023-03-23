@@ -5,6 +5,11 @@ namespace Data;
 
 public class DBRepository : IRepository
 {
+    private string _connectionString;
+    public DBRepository(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
     /// <summary>
     /// Retrieves all tickets
     /// </summary>
@@ -13,7 +18,7 @@ public class DBRepository : IRepository
     {
         List<Ticket> allTickets = new();
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT * FROM Tickets", conn);
@@ -46,7 +51,7 @@ public class DBRepository : IRepository
     {
         List<Ticket> filteredTickets = new();
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT * FROM Tickets WHERE Ticket_Client_ID = @UserId", conn);
@@ -80,7 +85,7 @@ public class DBRepository : IRepository
     {
         List<Ticket> filteredTickets = new();
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT * FROM Tickets WHERE Ticket_Status = 0", conn);
@@ -114,7 +119,7 @@ public class DBRepository : IRepository
     {
         List<User> allUsers = new();
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT * FROM Users", conn);
@@ -142,7 +147,7 @@ public class DBRepository : IRepository
     {
 
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE UPPER(Username) = @Username", conn);
@@ -173,7 +178,7 @@ public class DBRepository : IRepository
     {
 
 
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("SELECT TOP 1 * FROM Users WHERE User_ID = @UserId", conn);
@@ -202,7 +207,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void CreateNewTicket(Ticket newTicket)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("INSERT into Tickets(Ticket_Amount, Ticket_Client_ID, Ticket_Submission_Date, Ticket_Damage_Date, Ticket_Description, Ticket_Damager_Info, Ticket_Status) Values (@Amount, @ClientId, @SubmissionDate, @DamageDate, @Description, @DamagerId, 0)", conn);
@@ -220,7 +225,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void DeclineAllPendingTicketsForUserId(int UserId)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("UPDATE Tickets SET Ticket_Status = 2 WHERE Ticket_Client_ID = @UserId AND Ticket_Status = 0", conn);
@@ -234,7 +239,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void CreateNewUser(User newUser)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("INSERT into Users(Username, Hashed_Password, Full_Name, Email, Access_Level) Values (@Username, @Hashed_Password, @Full_Name, @Email, @AccessLevel)", conn);
@@ -251,7 +256,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int UserID)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("UPDATE Tickets SET Ticket_Employee_ID = @UserId, Ticket_Status = @tStatus, Ticket_Justification = @tJustification Where Ticket_Num = @tId", conn);
@@ -268,7 +273,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void UpdateUserAccessLevel(int UserID, int AccessLevel)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
 
         using SqlCommand cmd = new("UPDATE Users SET Access_Level = @uLevel Where User_ID = @uId", conn);
@@ -282,7 +287,7 @@ public class DBRepository : IRepository
     /// </summary>
     public void UpdateUserInfo(User user)
     {
-        using SqlConnection conn = new(Secrets.getConnectionString());
+        using SqlConnection conn = new(_connectionString);
         conn.Open();
         string withPassword = "Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID";
         string withoutPassword = "Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID";

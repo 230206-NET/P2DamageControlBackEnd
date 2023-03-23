@@ -8,7 +8,7 @@ using Data;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<IRepository, DBRepository>();
+builder.Services.AddScoped<IRepository, DBRepository>(ctx => new DBRepository(builder.Configuration.GetConnectionString("Secrets")));
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddAuthentication(opt =>
 {
