@@ -19,13 +19,6 @@ public class TicketFormController : Controller
         _logger = logger;
         _service = service;
     }
-
-
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpPost]
     public IActionResult SubmitClaim([FromBody] NewTicketModel? newClaim)
 
@@ -37,7 +30,7 @@ public class TicketFormController : Controller
             Console.WriteLine("The ticket is null");
             return BadRequest("Invalid client request");
         }
-        Ticket newTicket = new Ticket(newClaim.Amount,newClaim.ClientId, newClaim.Description, "" + newClaim.DamagerId, newClaim.DamageDate);
+        Ticket newTicket = new Ticket(newClaim.Amount, newClaim.ClientId, newClaim.Description, "" + newClaim.DamagerId, newClaim.DamageDate);
         return Created("TicketForm/SubmitClaim", _service.CreateNewTicket(newTicket));
     }
 }

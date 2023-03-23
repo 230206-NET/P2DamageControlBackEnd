@@ -19,21 +19,12 @@ public class NewLogInController : Controller
     private readonly AccountService _service;
 
 
-    public NewLogInController(ILogger<NewLogInController> logger,  AccountService service)
+    public NewLogInController(ILogger<NewLogInController> logger, AccountService service)
     {
         _logger = logger;
         _service = service;
     }
 
-    /*public IActionResult Index()
-    {
-        return View("NewLogin");
-    }*/
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     [HttpPost]
     public IActionResult LogIn([FromBody] LoginModel credentials)
     {

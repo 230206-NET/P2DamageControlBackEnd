@@ -14,7 +14,7 @@ public class AccountService
     }
 
     //Get a list of all users in the system
-    public List<User> GetAllUsers()
+    public virtual List<User> GetAllUsers()
     {
         try
         {
@@ -26,7 +26,7 @@ public class AccountService
         }
     }
     //updates the user's information
-    public User UpdateUserInfo(User user)
+    public virtual User UpdateUserInfo(User user)
     {
         try
         {
@@ -40,7 +40,7 @@ public class AccountService
     }
 
     //Check for a username in the database that equals some entered username
-    public User? GetUserByUsername(string username)
+    public virtual User? GetUserByUsername(string username)
     {
         try
         {
@@ -52,7 +52,7 @@ public class AccountService
         }
     }
 
-    public User? GetUserByUserId(int id)
+    public virtual User? GetUserByUserId(int id)
     {
         try
         {
@@ -67,7 +67,7 @@ public class AccountService
 
 
     //Return false if the username entered is not in the database
-    public Boolean UsernameExists(string username)
+    public virtual Boolean UsernameExists(string username)
     {
         try
         {
@@ -84,7 +84,7 @@ public class AccountService
     }
 
     //Stores information of a new user
-    public User CreateNewUser(User newUser)
+    public virtual User CreateNewUser(User newUser)
     {
         try
         {
@@ -99,7 +99,7 @@ public class AccountService
     }
 
     //Get all tickets from  database repo
-    public List<Ticket> GetAllTickets()
+    public virtual List<Ticket> GetAllTickets()
     {
         try
         {
@@ -112,7 +112,7 @@ public class AccountService
     }
 
     //Returns a ticket with the given ID
-    public Ticket? GetTicketById(int ID)
+    public virtual Ticket? GetTicketById(int ID)
     {
         List<Ticket> tickets = new();
         try
@@ -136,7 +136,7 @@ public class AccountService
     }
 
     //gets a list of tickets using an user Id
-    public List<Ticket> GetTicketsByUserId(int Id)
+    public virtual List<Ticket> GetTicketsByUserId(int Id)
     {
         try
         {
@@ -149,7 +149,7 @@ public class AccountService
     }
 
     //gets a list of pending tickets
-    public List<Ticket> GetPendingTickets()
+    public virtual List<Ticket> GetPendingTickets()
     {
         try
         {
@@ -162,7 +162,7 @@ public class AccountService
     }
 
     //persists a new ticket to storage
-    public Ticket CreateNewTicket(Ticket newTicket)
+    public virtual Ticket CreateNewTicket(Ticket newTicket)
     {
         try
         {
@@ -176,7 +176,7 @@ public class AccountService
     }
 
     //Used to change ticket status to either accepted or rejected, allows for the input of some justification for the ruling, and applies the employee ID to the ticket to show who made the decision
-    public Ticket? UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int userID)
+    public virtual Ticket? UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int userID)
     {
         try
         {
@@ -191,7 +191,7 @@ public class AccountService
 
     //Finds a user with the given userID, finds a ticket with the given ticketId, and checks if the user has the authorization
     //required to make a ruling on the ticket. If so, runs UpdateTicketStatus, if not, returns null.
-    public Ticket? UpdateTicketStatusWithUserId(int userID, int TicketId, int TicketStatus, string TicketJustification)
+    public virtual Ticket? UpdateTicketStatusWithUserId(int userID, int TicketId, int TicketStatus, string TicketJustification)
     {
         User? editor;
         Ticket? ticketToEdit;
@@ -233,7 +233,7 @@ public class AccountService
     }
 
     //Used to change a user's access level, for promoting and demoting employees
-    public void UpdateUserAccessLevel(int UserID, int AccessLevel)
+    public virtual void UpdateUserAccessLevel(int UserID, int AccessLevel)
     {
         try
         {
@@ -245,7 +245,7 @@ public class AccountService
         }
     }
 
-    public void DeclineAllPendingTicketsForUserId(int userId)
+    public virtual void DeclineAllPendingTicketsForUserId(int userId)
     {
         try
         {
@@ -259,7 +259,7 @@ public class AccountService
 
     //Checks if the user with the given AdminID is an admin, if so will find user with the given UserId and allow admin to
     //adjust that user's acces level. If not, returns null
-    public User? UpdateUserAccessLevelWithUserId(int AdminID, int UserId, int AccessLevel)
+    public virtual User? UpdateUserAccessLevelWithUserId(int AdminID, int UserId, int AccessLevel)
     {
         User? admin;
         User? userToEdit;
