@@ -31,15 +31,18 @@ on:
 
 permissions:
   contents: read
+  
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - run: cd ./API/
       - uses: actions/checkout@v3
 
       - name: Set up .NET Core
+        
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
