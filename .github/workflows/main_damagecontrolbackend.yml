@@ -16,6 +16,7 @@ jobs:
 
     steps:
       - run: pwd
+      - run: cd ./API/
       - uses: actions/checkout@v2
 
       - name: Set up .NET Core
