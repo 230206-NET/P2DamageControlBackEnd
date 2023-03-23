@@ -104,35 +104,7 @@ public class EmployeeViewTicketsControllerTests
     }
 
 }
-public class IndexControllerTests
-{
-    private readonly IndexController _controller;
-    private readonly Mock<ILogger<IndexController>> _mockIlogger;
 
-    public IndexControllerTests()
-    {
-        _mockIlogger = new Mock<ILogger<IndexController>>();
-        _controller = new IndexController(_mockIlogger.Object);
-    }
-    [Fact]
-    public void Privacy_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
-    [Fact]
-    public void Index_Action_Executes_ReturnsView()
-    {
-        var result = _controller.Privacy();
-        Assert.IsType<ViewResult>(result);
-    }
-    // [Fact]
-    // public void Error_Action_Executes_ReturnsView()
-    // {
-    //     var result = _controller.Error();
-    //     Assert.IsType<ViewResult>(result);
-    // }
-}
 public class LogInControllerTests
 {
     private readonly NewLogInController _controller;

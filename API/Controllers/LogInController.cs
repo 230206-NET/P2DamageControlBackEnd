@@ -19,7 +19,7 @@ public class NewLogInController : Controller
     private readonly AccountService _service;
 
 
-    public NewLogInController(ILogger<NewLogInController> logger,  AccountService service)
+    public NewLogInController(ILogger<NewLogInController> logger, AccountService service)
     {
         _logger = logger;
         _service = service;
