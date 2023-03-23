@@ -11,7 +11,7 @@ public class DBRepository : IRepository
     /// <returns>a List of tickets</returns>
     public List<Ticket> GetAllTickets()
     {
-        List<Ticket> allTickets = new List<Ticket>();
+        List<Ticket> allTickets = new();
 
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
@@ -39,12 +39,12 @@ public class DBRepository : IRepository
     }
 
     /// <summary>
-    /// Retrieves an Tickets by an userId.
+    /// Retrieves Tickets by an userId.
     /// </summary>
-    /// <returns>an List of Tickets</returns>
+    /// <returns>a List of Tickets</returns>
     public List<Ticket> GetTicketsByUserId(int Id)
     {
-        List<Ticket> filteredTickets = new List<Ticket>();
+        List<Ticket> filteredTickets = new();
 
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
@@ -72,16 +72,18 @@ public class DBRepository : IRepository
         }
         return filteredTickets;
     }
-
+    /// <summary>
+    /// Retrieves all  pending Tickets
+    /// </summary>
+    /// <returns>a List of Tickets</returns>
     public List<Ticket> GetPendingTickets()
     {
-        List<Ticket> filteredTickets = new List<Ticket>();
+        List<Ticket> filteredTickets = new();
 
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
         using SqlCommand cmd = new("SELECT * FROM Tickets WHERE Ticket_Status = 0", conn);
-        //cmd.Parameters.AddWithValue("@TicketStatus", TicketStatus); maybe for later use.
         using SqlDataReader reader = cmd.ExecuteReader();
 
 
@@ -110,7 +112,7 @@ public class DBRepository : IRepository
     /// <returns>a List of users</returns>
     public List<User> GetAllUsers()
     {
-        List<User> allUsers = new List<User>();
+        List<User> allUsers = new();
 
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
@@ -150,7 +152,7 @@ public class DBRepository : IRepository
 
         while (reader.Read())
         {
-            User? user = new User(
+            User? user = new(
                 (int)reader["User_ID"],
                 (string)reader["Username"],
                 (string)reader["Hashed_Password"],
@@ -181,7 +183,7 @@ public class DBRepository : IRepository
 
         while (reader.Read())
         {
-            User? user = new User(
+            User? user = new(
                 (int)reader["User_ID"],
                 (string)reader["Username"],
                 (string)reader["Hashed_Password"],
@@ -198,33 +200,12 @@ public class DBRepository : IRepository
     /// <summary>
     /// Persists a new ticket to storage
     /// </summary>
-    // public void CreateNewTicket(Ticket newTicket)
-    // {
-    //     using SqlConnection conn = new(Secrets.getConnectionString());
-    //     conn.Open();
-
-    //     using SqlCommand cmd = new("INSERT into Tickets(Ticket_Num, Ticket_Amount, Ticket_Client_ID, Ticket_Submission_Date, Ticket_Damage_Date, Ticket_Description, Ticket_Damager_Info) Values (@Id, @Amount, @ClientId, @SubmissionDate, @DamageDate, @Description, @DamagerId)", conn);
-    //     cmd.Parameters.AddWithValue("@Id", newTicket.Id);
-    //     cmd.Parameters.AddWithValue("@Amount", newTicket.Amount);
-    //     cmd.Parameters.AddWithValue("@ClientId", newTicket.ClientId);
-    //     cmd.Parameters.AddWithValue("@SubmissionDate", newTicket.SubmissionDate);
-    //     cmd.Parameters.AddWithValue("@DamageDate", newTicket.DamageDate);
-    //     cmd.Parameters.AddWithValue("@Description", newTicket.Description);
-    //     cmd.Parameters.AddWithValue("@DamagerId", newTicket.DamagerId);
-
-    //     cmd.ExecuteNonQuery();
-    // }
-    /// <summary>
-    /// Persists a new ticket to storage
-    /// </summary>
-    /// <returns>nothing -- for now</returns>
     public void CreateNewTicket(Ticket newTicket)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
 
         using SqlCommand cmd = new("INSERT into Tickets(Ticket_Amount, Ticket_Client_ID, Ticket_Submission_Date, Ticket_Damage_Date, Ticket_Description, Ticket_Damager_Info, Ticket_Status) Values (@Amount, @ClientId, @SubmissionDate, @DamageDate, @Description, @DamagerId, 0)", conn);
-        //cmd.Parameters.AddWithValue("@Id", newTicket.Id);
         cmd.Parameters.AddWithValue("@Amount", newTicket.Amount);
         cmd.Parameters.AddWithValue("@ClientId", newTicket.ClientId);
         cmd.Parameters.AddWithValue("@SubmissionDate", newTicket.SubmissionDate);
@@ -234,7 +215,9 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
-
+    /// <summary>
+    /// Declines all tickets for a specific user
+    /// </summary>
     public void DeclineAllPendingTicketsForUserId(int UserId)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -249,7 +232,6 @@ public class DBRepository : IRepository
     /// <summary>
     /// Persists a new user to storage
     /// </summary>
-    /// <returns>nothing -- for now</returns>
     public void CreateNewUser(User newUser)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -267,7 +249,6 @@ public class DBRepository : IRepository
     /// <summary>
     /// Retrieves a ticket to approve or deny, along with entering some justification and applying the employee ID to the ticket
     /// </summary>
-    /// <returns>nothing -- for now</returns>
     public void UpdateTicketStatus(int TicketID, int TicketStatus, string TicketJustification, int UserID)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -281,10 +262,10 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
+
     /// <summary>
     /// Retrieves a user to promote or demote
     /// </summary>
-    /// <returns>nothing -- for now</returns>
     public void UpdateUserAccessLevel(int UserID, int AccessLevel)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
@@ -296,31 +277,25 @@ public class DBRepository : IRepository
 
         cmd.ExecuteNonQuery();
     }
+    /// <summary>
+    /// Updates the User's information
+    /// </summary>
     public void UpdateUserInfo(User user)
     {
         using SqlConnection conn = new(Secrets.getConnectionString());
         conn.Open();
-        Console.WriteLine("About to change info");
-        if (user.Password != "N/A")
-        {
-            Console.WriteLine("Password updated");
-            using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
-            cmd.Parameters.AddWithValue("@Username", user.Username);
-            cmd.Parameters.AddWithValue("@Hashed_Password", user.Password);
-            cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
-            cmd.Parameters.AddWithValue("@Email", user.Email);
-            cmd.Parameters.AddWithValue("@uId", user.Id);
-            cmd.ExecuteNonQuery();
-        }
-        else
-        {
-            using SqlCommand cmd = new SqlCommand("Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID", conn);
-            cmd.Parameters.AddWithValue("@Username", user.Username);
-            cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
-            cmd.Parameters.AddWithValue("@Email", user.Email);
-            cmd.Parameters.AddWithValue("@uId", user.Id);
-            Console.WriteLine("password not updated");
-            cmd.ExecuteNonQuery();
-        }
+        string withPassword = "Update Users SET Username = @Username, Hashed_Password = @Hashed_Password, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID";
+        string withoutPassword = "Update Users SET Username = @Username, Full_Name = @Full_Name, Email = @Email WHERE User_ID = @uID";
+
+        using SqlCommand cmd = new(user.Password != "N/A" ? withPassword : withoutPassword, conn);
+
+        cmd.Parameters.AddWithValue("@Username", user.Username);
+        if (user.Password != "N/A") { cmd.Parameters.AddWithValue("@Hashed_Password", user.Password); }
+        cmd.Parameters.AddWithValue("@Full_Name", user.FullName);
+        cmd.Parameters.AddWithValue("@Email", user.Email);
+        cmd.Parameters.AddWithValue("@uId", user.Id);
+        cmd.ExecuteNonQuery();
+
     }
+
 }
