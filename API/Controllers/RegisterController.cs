@@ -6,7 +6,7 @@ using Models;
 using Data;
 using System.Text.Json;
 using Services;
-
+using Serilog;
 namespace API.Controllers;
 
 public class RegisterController : Controller
@@ -19,6 +19,10 @@ public class RegisterController : Controller
     {
         _logger = logger;
         _service = service;
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("../logs/registerLogs.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
     }
 
     [HttpPost]
@@ -28,6 +32,8 @@ public class RegisterController : Controller
         {
             return BadRequest("Invalid client request");
         }
+        Log.Information($"User successfully registered an account Id: {newUser.Id}, Username: {newUser.Username}, Access Level: {newUser.AccessLevel}");
+        Log.CloseAndFlush();
         return Created("Register/Register", _service.CreateNewUser(newUser));
     }
 }

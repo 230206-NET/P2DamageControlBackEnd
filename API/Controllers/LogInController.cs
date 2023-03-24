@@ -10,6 +10,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Services;
+using Serilog;
 
 namespace API.Controllers;
 
@@ -19,10 +20,16 @@ public class NewLogInController : Controller
     private readonly AccountService _service;
 
 
+
+
     public NewLogInController(ILogger<NewLogInController> logger, AccountService service)
     {
         _logger = logger;
         _service = service;
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File("../logs/loginLogs.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
     }
 
     [HttpPost]
@@ -55,6 +62,8 @@ public class NewLogInController : Controller
                 signingCredentials: signinCredentials
             );
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+            Log.Information($"User successfully logged in Id: {user.Id}, Username: {user.Username}, Access Level: {user.AccessLevel}");
+            Log.CloseAndFlush();
             return Ok(new AuthenticatedResponse { Token = tokenString });
         }
         Console.WriteLine("Credentials didn't match");
